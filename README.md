@@ -102,18 +102,4 @@ E-mail de fechamento mensal em HTML (com logo embutido em base64) — resume uni
 Salva em `email_fechamento_AAAA_MM.html`.
 
 ---
-
-## Pontos de atenção gerais
-
-| Item | Onde | Sugestão |
-|---|---|---|
-| Credenciais em texto puro (Sienge e SQL) | `Extração Saldo devedor.py`, `Importação_base_pdd.py`, `Importacao_para_saldo_devedor.py`, `Importacao para farol...py`, `Portal_inadimplencia.py`, `Portal_pdd.py`, `Analise_resumida.py` | Mover para variável de ambiente / cofre de segredos antes de versionar |
-| scripts fazendo a importação de saldo devedor para tabela | Importacao_para_saldo_devedor.py` |
-| Carga sem controle de competência (`append` puro, sem truncate/delete por mês) | `Importacao_para_saldo_devedor.py` (STG) | Adicionar coluna de competência + lógica de substituição, como já existe em `Importação_base_pdd.py` |
-| Mês/ano fixo no nome do arquivo | `Renomear arquivos - saldo devedor.py` (`JUL26`) | Parametrizar com `datetime.now()` |
-| `df.applymap` (deprecado no pandas ≥ 2.1) | `Importação Excel para SQL - Saldo devedor.py` | Trocar por `df.map(...)` (já corrigido nos scripts mais novos) |
-| Relatórios (Etapa 4) dependem de a Etapa 3 já ter rodado para o mês | `Portal_inadimplencia.py`, `Portal_pdd.py`, `Analise_resumida.py` | Rodar sempre na ordem 1 → 2 → 3 → 4 num mesmo fechamento mensal |
-
----
-
 *Gerado a partir da leitura dos scripts fornecidos, organizados na ordem de execução: extração → importação SQL → base PDD → relatórios.*
