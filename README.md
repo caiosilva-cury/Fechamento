@@ -108,7 +108,7 @@ Salva em `email_fechamento_AAAA_MM.html`.
 | Item | Onde | Sugestão |
 |---|---|---|
 | Credenciais em texto puro (Sienge e SQL) | `Extração Saldo devedor.py`, `Importação_base_pdd.py`, `Importacao_para_saldo_devedor.py`, `Importacao para farol...py`, `Portal_inadimplencia.py`, `Portal_pdd.py`, `Analise_resumida.py` | Mover para variável de ambiente / cofre de segredos antes de versionar |
-| Dois scripts fazendo a mesma importação de saldo devedor para tabelas diferentes | `Importação Excel para SQL - Saldo devedor.py` (2a) vs `Importacao_para_saldo_devedor.py` (2b) | Confirmar qual é a versão vigente e aposentar a outra, para não gerar confusão sobre qual rodar |
+| scripts fazendo a importação de saldo devedor para tabela | Importacao_para_saldo_devedor.py` |
 | Carga sem controle de competência (`append` puro, sem truncate/delete por mês) | `Importacao_para_saldo_devedor.py` (STG) | Adicionar coluna de competência + lógica de substituição, como já existe em `Importação_base_pdd.py` |
 | Mês/ano fixo no nome do arquivo | `Renomear arquivos - saldo devedor.py` (`JUL26`) | Parametrizar com `datetime.now()` |
 | `df.applymap` (deprecado no pandas ≥ 2.1) | `Importação Excel para SQL - Saldo devedor.py` | Trocar por `df.map(...)` (já corrigido nos scripts mais novos) |
